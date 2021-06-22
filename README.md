@@ -1,0 +1,1 @@
+Following the [Upload to AWS S3 Using a Node.js Script or AWS Lambda](https://medium.com/swlh/upload-to-aws-s3-using-a-node-js-script-or-aws-lambda-e1877960bcea) tutorial.
