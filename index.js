@@ -1,6 +1,7 @@
 require('dotenv').config()
 const { BUCKET_NAME, IAM_USER_KEY, IAM_USER_SECRET } = process.env;
 
+const https = require('https');
 const AWS = require('aws-sdk');
 
 const s3bucket = new AWS.S3({
@@ -20,4 +21,18 @@ function uploadObjectToS3Bucket(objectName, objectData) {
   });
 }
 
-uploadObjectToS3Bucket('helloworld.json', 'Hello World!');
+https.get('https://via.placeholder.com/300', (res) => {
+  const data = [];
+
+  res.on('data', (chunk) => {
+    data.push(chunk);
+  });
+
+  res.on('end', () => {
+    const buffer = Buffer.concat(data);
+    uploadObjectToS3Bucket('image.png', buffer);
+  });
+
+}).on("error", (err) => {
+  console.log("Error: " + err.message);
+});
